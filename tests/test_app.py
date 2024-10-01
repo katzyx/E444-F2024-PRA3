@@ -87,6 +87,7 @@ def test_delete_message(client):
     data = json.loads(rv.data)
     assert data["status"] == 1
 
+
 def test_search_functionality(client):
     """Test the search functionality."""
     # create a post in the database to search for
@@ -96,6 +97,6 @@ def test_search_functionality(client):
         follow_redirects=True,
     )
     # test the search with the query 'Flask'
-    response = client.get('/search/?query=Flask')
+    response = client.get("/search/?query=Flask")
     # assert the response status code
     assert response.status_code == 200
