@@ -89,16 +89,13 @@ def test_delete_message(client):
 
 def test_search_functionality(client):
     """Test the search functionality."""
-    
     # create a post in the database to search for
     client.post(
         "/add",  # Assuming there is an endpoint to add posts
         data=dict(title="Search Testing", text="This is a test for Search."),
         follow_redirects=True,
     )
-
     # test the search with the query 'Flask'
     response = client.get('/search/?query=Flask')
-    
     # assert the response status code
     assert response.status_code == 200
