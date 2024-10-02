@@ -90,13 +90,15 @@ def test_delete_message(client):
 
 def test_search_functionality(client):
     """Test the search functionality."""
+    login(client, app.config["USERNAME"], app.config["PASSWORD"])
     # create a post in the database to search for
     client.post(
-        "/add",  # Assuming there is an endpoint to add posts
-        data=dict(title="Search Testing", text="This is a test for Search."),
+        "/add", 
+        data=dict(title="test search", text="test"),
         follow_redirects=True,
     )
     # test the search with the query 'Flask'
-    response = client.get("/search/?query=Flask")
+    response = client.get("/search/?query=test")
     # assert the response status code
     assert response.status_code == 200
+    assert b"test" in response.data
